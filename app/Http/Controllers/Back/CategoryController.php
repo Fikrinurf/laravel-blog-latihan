@@ -32,7 +32,7 @@ class CategoryController extends Controller
         $data['slug'] = Str::slug($data['name']);
         Category::create($data);
 
-        return back()->with('success', 'Category berhasil dibuat');
+        return back()->with('success', 'Category berhasil updated');
     }
 
 
