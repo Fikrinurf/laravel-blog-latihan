@@ -27,13 +27,7 @@
                     </div>
                 @endif
 
-                @if (session('success'))
-                    <div class="mt-3">
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    </div>
-                @endif
+                <div class="swal" data-swal="{{ session('success') }}"></div>
             </div><!--//row-->
 
             <div class="tab-content" id="orders-table-tab-content">
@@ -94,7 +88,64 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+    {{-- alert --}}
+    <script>
+        const swal = $('.swal').data('swal');
+
+        if (swal) {
+            Swal.fire({
+                'title': 'Success',
+                'text': swal,
+                'icon': 'success',
+                'showConfirmButton': false,
+                'timer': 1500
+            })
+        }
+
+        function deleteArticle(e) {
+            let id = e.getAttribute('data-id');
+
+            Swal.fire({
+                title: 'Hapus',
+                text: 'Yakin Data Akan dihapus ?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'DELETE',
+                        url: '/article/' + id,
+                        dataType: "json",
+                        success: function(response) {
+                            Swal.fire({
+                                title: 'Success',
+                                text: response.message,
+                                icon: 'success',
+                            }).then((result) => {
+                                window.location.href = '/article';
+                            })
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                        }
+                    });
+                }
+
+            })
+        }
+    </script>
+
+    {{-- data table --}}
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({
