@@ -1,7 +1,8 @@
 @extends('back.layout.template')
 
 @push('css')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/dataTables.bootstrap5.min.css') }}">
 @endpush
 
 @section('title', 'List Article - Admin')
@@ -85,10 +86,14 @@
 @endsection
 
 @push('js')
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+    <script src="{{ asset('assets/jquery-3.5.1.js') }}"></script>
+    {{-- <script src="https://cdn.datatables.net/1.13.4h/js/jquery.dataTables.min.js"></script> --}}
+    <script src="{{ asset('assets/jquery.dataTables.min.js') }}"></script>
+    {{-- <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script> --}}
+    <script src="{{ asset('assets/dataTables.bootstrap5.min.js') }}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+    <script src="{{ asset('assets/sweetalert2@11.js') }}"></script>
 
 
     {{-- alert --}}

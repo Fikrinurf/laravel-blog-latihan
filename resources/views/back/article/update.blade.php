@@ -27,7 +27,8 @@
                 <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
                     <div class="app-card app-card-orders-table shadow-sm mb-5">
                         <div class="app-card-body p-3">
-                            <form action="{{ url('article/' . $article->id) }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ url('article/' . $article->id) }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="oldImg" value="{{ $article->img }}">
@@ -66,7 +67,7 @@
                                     <input type="file" id="img" name="img" class="form-control">
                                     <div class="mt-2">
                                         <small>Gambar Lama</small><br>
-                                        <img src="{{ asset('storage/back/' . $article->img) }}" alt=""
+                                        <img src="{{ asset('storage/slider/' . $article->img) }}" alt=""
                                             width="80px">
                                     </div>
                                 </div>
